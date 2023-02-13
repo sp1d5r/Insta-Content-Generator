@@ -1,5 +1,5 @@
 from post_generator.background import Background
-from post_generator.logo import add_logo
+from post_generator.text_functions import add_logo, add_question
 
 USERNAME = "cleo.conventa"
 TASKS = [
@@ -29,4 +29,5 @@ if __name__=="__main__":
 
     bg = Background()
     image = add_logo(bg.background)
+    image = add_question(image, "What is the most effective way to teach someone something?")
     image.save("image.jpeg")

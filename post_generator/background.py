@@ -42,7 +42,6 @@ def rgb_str_from_tuple(rgb):
 class Background():
     def __init__(self, hue_min=162, saturation=0.5, value=1, hue_variance=80, width=1465, height=1624):
         [min_rgb, max_rgb] = self.get_min_max_rgb_colors(hue_min, saturation, value, hue_variance)
-        print(min_rgb, max_rgb)
         min_rgb = rgb_str_from_tuple(min_rgb)
         max_rgb = rgb_str_from_tuple(max_rgb)
         self.background = generate_gradient(min_rgb, max_rgb, width, height)
@@ -51,7 +50,6 @@ class Background():
         half_variance = int(variance / 2)
         min_hue = hue_min + random.randint(0, half_variance)
         max_hue = min_hue + random.randint(half_variance, variance)
-        print(f"new stuff {min_hue}, {max_hue}")
         return [hsv_to_rgb(min_hue, saturation, value), hsv_to_rgb(max_hue, saturation, value)]
 
     def get_background(self):
