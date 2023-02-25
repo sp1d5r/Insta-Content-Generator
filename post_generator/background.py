@@ -22,7 +22,7 @@ def hsv_to_rgb(h, s, v):
 def generate_gradient(
         colour1, colour2, width: int, height: int) -> Image:
     """Generate a vertical gradient."""
-    print(f"New gradient, {colour1}, {colour2}")
+    # print(f"New gradient, {colour1}, {colour2}")
     base = Image.new('RGB', (width, height), colour1)
     top = Image.new('RGB', (width, height), colour2)
     mask = Image.new('L', (width, height))
@@ -40,18 +40,19 @@ def rgb_str_from_tuple(rgb):
 
 
 class Background():
-    def __init__(self, hue_min=162, saturation=0.5, value=1, hue_variance=80, width=1465, height=1624):
+    def __init__(self, hue_min=100, saturation=0.5, value=1, hue_variance=160, width=1465, height=1624):
         [min_rgb, max_rgb] = self.get_min_max_rgb_colors(hue_min, saturation, value, hue_variance)
-        min_rgb = rgb_str_from_tuple(min_rgb)
-        max_rgb = rgb_str_from_tuple(max_rgb)
-        self.background = generate_gradient(min_rgb, max_rgb, width, height)
+        self.width = width
+        self.height = height
+        self.min_rgb = rgb_str_from_tuple(min_rgb)
+        self.max_rgb = rgb_str_from_tuple(max_rgb)
 
     def get_min_max_rgb_colors(self, hue_min, saturation, value, variance):
         half_variance = int(variance / 2)
-        min_hue = hue_min + random.randint(0, half_variance)
-        max_hue = min_hue + random.randint(half_variance, variance)
+        min_hue = max(hue_min + random.randint(0, half_variance), 0)
+        max_hue = min(359, min_hue + random.randint(half_variance, variance))
         return [hsv_to_rgb(min_hue, saturation, value), hsv_to_rgb(max_hue, saturation, value)]
 
     def get_background(self):
-        return self.background
+        return generate_gradient(self.min_rgb, self.max_rgb, self.width, self.height)
 

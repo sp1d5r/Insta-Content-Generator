@@ -11,4 +11,12 @@ and doesn't require a ton of effort.
 ![image 2](example/Instagram Post 2.png) 
 ![image 3](example/Instagram Post 3.png)
 
+# Setup 
+1. Pip install the `requirements.txt` file 
+2. Add some tasks to the main.py file 
+3. Run it
+4. Look at output directory for the outputted files 
+
+
+
 
