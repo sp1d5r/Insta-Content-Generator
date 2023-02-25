@@ -7,9 +7,9 @@ but fuck that. Honestly. Fuck that. I want a machine to do it for me.
 The plan. I have a basic setup for the content I want to post already, it is simple, minimalistic 
 and doesn't require a ton of effort. 
 
-![image 1](example/Instagram Post 1.png) 
-![image 2](example/Instagram Post 2.png) 
-![image 3](example/Instagram Post 3.png)
+![image 1](example/InstagramPost1.png) 
+![image 2](example/InstagramPost2.png) 
+![image 3](example/InstagramPost3.png)
 
 # Setup 
 1. Pip install the `requirements.txt` file 
