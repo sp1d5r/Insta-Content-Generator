@@ -1,5 +1,7 @@
 from post_generator.text_functions import add_logo, add_question, add_image_ontop, add_title
 from PIL import Image
+from io import BytesIO
+import requests
 
 class ConventaQuestion():
     def __init__(self, background, question, title, illustrationPath):
@@ -15,8 +17,18 @@ class ConventaQuestion():
         # Add Question
         image = add_question(image, question)
 
-        # Add illustration
-        front_image = Image.open(illustrationPath)
+        # Add illustration from URL
+        # Send a HTTP request to the URL of the image
+        # Send a HTTP request to the URL of the image
+        response = requests.get(illustrationPath)
+
+        # Read the content of the server’s response
+        data = response.content
+
+        # Create a BytesIO object and read the response data into it
+        byte_io = BytesIO(data)
+
+        front_image = Image.open(byte_io)
         image = add_image_ontop(image, front_image)
 
         # Add swipe text

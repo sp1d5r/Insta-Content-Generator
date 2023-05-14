@@ -31,12 +31,44 @@ def add_text_center(image, text, line_length, line_height, center_x, top_y, font
         draw.text((center_x, top_y + line_height * index), text, text_color, font=font, anchor="mm")
     return image
 
-def add_question(image, question, line_length=1173, line_height=70):
+def add_text_boxes(image, sentence, start_x, start_y, font, padding=30, margin=50, text_color=(0,0,0), box_color=(242, 249, 255), border_color=(120, 120, 120)):
+    draw = ImageDraw.Draw(image)
+    x, y = start_x, start_y
+
+    # Split sentence into words
+    words = sentence.split(' ')
+
+    for word in words:
+        # Calculate text and box dimensions
+        text_width, text_height = draw.textsize(word, font)
+        box_width = text_width + 2 * padding
+        box_height = text_height + 2 * padding
+
+        # Check if the box fits on the current line
+        if x + box_width + margin > image.width - 200:
+            # Start a new line
+            x = start_x
+            y += box_height + margin
+
+        # Draw the box
+        box_coords = [(x, y), (x + box_width, y + box_height)]
+        draw.rectangle(box_coords, fill=box_color, outline=border_color, width=3)
+
+        # Draw the text
+        text_x = x + padding
+        text_y = y + padding
+        draw.text((text_x, text_y), word, fill=text_color, font=font)
+
+        # Move to the next position
+        x += box_width + margin
+
+    return image
+def add_question(image, question, line_length=1173, line_height=70, y=1348):
     font = ImageFont.truetype('assets/Inter-Bold.ttf', 60)
     draw = ImageDraw.Draw(image)
     wraped_text = get_wrapped_text(question, font, line_length)
     for index, text in enumerate(wraped_text):
-        draw.text((1465/2, 1348 + line_height * index), text, (0, 0, 0), font=font, anchor="mm")
+        draw.text((1465/2, y + line_height * index), text, (0, 0, 0), font=font, anchor="mm")
     return image
 
 def add_image_ontop(background_image, front_image, top=312, left=232, width=1000, height=1000):
