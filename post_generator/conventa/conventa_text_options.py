@@ -17,7 +17,7 @@ class ConventaTextOptions():
                 answer_post,
                 text=option,
                 line_length=806,
-                line_height=80,
+                line_height=50,
                 center_x=732,
                 top_y=currentDepth,
                 font=answer_font

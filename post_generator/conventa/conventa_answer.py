@@ -104,7 +104,7 @@ class ConventaBuildSentenceAnswer():
         )
 
         answer_font = ImageFont.truetype('assets/Inter-Bold.ttf', 30)
-        answer_post = add_text_boxes(answer_post, sentence, 200, 800, answer_font)
+        answer_post = add_text_boxes(answer_post, sentence, 200, 800, answer_font, box_color=(227, 255, 234))
 
         self.answer_post = answer_post
 
