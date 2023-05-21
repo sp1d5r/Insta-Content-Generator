@@ -1,7 +1,7 @@
 from PIL import Image
 from PIL import ImageFont
 from post_generator.text_functions import add_logo, add_image_ontop, add_text_center, drawMappedValues
-
+import random
 
 class ConventaFlipAndSelect():
     def __init__(self, background, mapping):
@@ -14,13 +14,10 @@ class ConventaFlipAndSelect():
 
         keys = list(mapping.keys())
         values = list(mapping.values())
-
-        print(keys)
-        print(values)
-
+        random.shuffle(keys)
+        random.shuffle(values)
 
         flip_select_post = drawMappedValues(flip_select_post, keys, values, question_font)
-
 
         self.flip_select_post = flip_select_post
 
